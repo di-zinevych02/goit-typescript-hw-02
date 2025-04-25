@@ -1,0 +1,11 @@
+.error {
+  padding-top: 30px;
+}
+.texterror {
+  font-size: 22px;
+
+  color: #ff4c4c;
+  filter: drop-shadow(0 0 15px #ff4c4c);
+  transition: all 0.3s ease;
+  font-weight: bold;
+}

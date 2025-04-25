@@ -1,0 +1,61 @@
+.modal {
+  position: absolute;
+  background-color: #0d1f1e;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  width: 400px;
+  height: 700px;
+  margin: 0 auto;
+  box-shadow: 0 0 40px #00ff88;
+  color: #00ff88;
+}
+
+.overlay {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cardmodal {
+  border-radius: 16px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.imgmodal {
+  width: 400px;
+  height: 600px;
+  object-fit: cover;
+  border-radius: 15px;
+  background-size: cover;
+  background-position: center;
+}
+
+.infomodal {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px 15px;
+}
+
+.infoitemmodal {
+  font-weight: bold;
+  color: #66ffcc;
+  font-size: 22px;
+}
+.infolistmodal {
+  text-align: left;
+}
+.infolistmodal:first-child {
+  padding-bottom: 5px;
+}
+.itemmodal {
+  padding-left: 5px;
+  color: #e0ffe6;
+  font-size: 20px;
+}

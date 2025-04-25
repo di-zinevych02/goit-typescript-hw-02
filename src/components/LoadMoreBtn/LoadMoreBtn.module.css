@@ -1,0 +1,13 @@
+.loadmorecontainer {
+  padding-top: 20px;
+}
+.btnloadmore {
+  border: 2px solid #66ffcc;
+  box-shadow: 0 0 15px#66ffcc;
+  filter: drop-shadow(0 0 15px #66ffcc);
+  transition: all 0.3s ease;
+  font-weight: bold;
+  color: #66ffcc;
+  font-size: 20px;
+  cursor: pointer;
+}

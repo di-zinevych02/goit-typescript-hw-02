@@ -1,0 +1,18 @@
+.containergallery {
+  max-width: 1128px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 12px;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 12px;
+  row-gap: 12px;
+  margin: 0;
+  padding-left: 0;
+}
+.itemgallery {
+  width: calc((100% - 36px) / 4);
+}
