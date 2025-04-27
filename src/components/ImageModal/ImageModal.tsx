@@ -1,10 +1,18 @@
 import Modal from "react-modal";
+import { PhotoData } from "../App/App.types";
 import css from "./ImageModal.module.css";
 //Встановлює елемент DOM, який є основним для застосунку (root). Це допомагає для доступності (accessibility), наприклад, для того, щоб приховати інший контент від екранних читачів, коли модалка відкрита.
 Modal.setAppElement("#root");
-export default function ImageModal({ onClose, image }) {
-  //перетворює image в true або false, тобто Якщо image є (тобто передано об’єкт), буде true, модалка відкрита. Якщо image немає (null або undefined), буде false, модалка закрита
-  const isOpen = Boolean(image);
+
+interface ModalProps {
+  onClose: () => void;
+  isOpen: boolean;
+  image: PhotoData | null;
+    
+}
+const ImageModal: React.FC<ModalProps> = ({ onClose, isOpen, image }) => {
+  //якщо в image реально є дані про фото (urls є), тоді відкриваємо модалку
+
   return (
     <Modal
       isOpen={isOpen}
@@ -13,24 +21,24 @@ export default function ImageModal({ onClose, image }) {
       onRequestClose={onClose}
       //задає стиль для фону (оверлею) позаду модалки.
       overlayClassName={css.overlay}
-      //Перевіряє: якщо image існує (не null), рендерить вміст модалки.
+    //Перевіряє: якщо image існує (не null), рендерить вміст модалки.
     >
       {image && (
         <div className={css.cardmodal}>
           <img
             className={css.imgmodal}
-            src={image.urls.regular}
-            alt={image.description}
+            src={image.urls?.regular}
+            alt={image.description ||  "No description"}
           />
           <div className={css.infomodal}>
             <div className={css.infolistmodal}>
               <span className={css.infoitemmodal}>Likes: </span>
-              <span className={css.itemmodal}>{image.likes}</span>
+              <span className={css.itemmodal}>{image.likes ?? '0'}</span>
             </div>
             <div className={css.infolistmodal}>
               <span className={css.infoitemmodal}>Location: </span>
               <span className={css.itemmodal}>
-                {image.user.location || "Location unknown"}
+                {image.user?.location || "Location unknown"}
               </span>
             </div>
           </div>
@@ -38,4 +46,6 @@ export default function ImageModal({ onClose, image }) {
       )}
     </Modal>
   );
-}
+};
+
+export default ImageModal;

@@ -1,36 +1,37 @@
-import { useState, useEffect } from "react";
-import SearchBar from "./components/SearchBar/SearchBar";
+import { useState, useEffect, FormEvent  } from "react";
+import SearchBar from "../SearchBar/SearchBar";
 import "./App.css";
-import Loader from "./components/Loader/Loader";
+import Loader from "../Loader/Loader";
 import toast, { Toaster } from "react-hot-toast";
-import { fetchGallery } from "./galleryServise";
-import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
-import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
-import ImageModal from "./components/ImageModal/ImageModal";
+import { fetchGallery } from "../../galleryServise";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
+import  ImageModal from "../ImageModal/ImageModal";
+import { PhotoData } from "./App.types";
+import ImageGallery from "../ImageGallery/ImageGallery";
+import { FC } from "react";
 
-import ImageGallery from "./components/ImageGallery/ImageGallery";
-
-function App() {
+const App: FC = () => {
   // При сабміті форми зберігаємо термін в стані Апп і коли змінюємо реагує ефект і відбувається запит на сервер
-  const [searchTerm, setSearchTerm] = useState("");
-  const [photos, setPhotos] = useState([]);
-  const [selectPhoto, setSelectPhoto] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [page, setPage] = useState(1);
-  const [openModal, setOpenModal] = useState(false);
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [photos, setPhotos] = useState<PhotoData[]>([]);
+  const [selectPhoto, setSelectPhoto] = useState<PhotoData | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const [page, setPage] = useState<number>(1);;
+  const [openModal, setOpenModal] = useState<boolean>(false);
 
-  function isOpenModal(image) {
+  function isOpenModal(image: PhotoData) {
     setSelectPhoto(image);
     setOpenModal(true);
   }
 
-  function onCloseModal(image) {
+  function onCloseModal(){
     setSelectPhoto(null);
     setOpenModal(false);
   }
 
-  const handleSearch = (term) => {
+  const handleSearch = (term: string) =>{
     // При сабміті форми ми сетимо нові фото з бекенду та використовуємо унікальний ідентифікатор щоб при запиті одного того самого слова відображалась галерея
     setSearchTerm(`${term}/${Date.now()}`);
 
@@ -46,7 +47,7 @@ function App() {
       return;
     }
 
-    async function getPhoto() {
+    async function getPhoto(): Promise<void> {
       try {
         setError(false);
         setLoading(true);
@@ -63,7 +64,7 @@ function App() {
         setPhotos((prevPhotos) => {
           return [...prevPhotos, ...data];
         });
-      } catch {
+      } catch(error: unknown) {
         setError(true);
         toast.error("Something went wrong please reload again!");
       } finally {
@@ -78,7 +79,7 @@ function App() {
       <SearchBar onSearch={handleSearch} />
       {error && <ErrorMessage error={error} />}
       <ImageGallery images={photos} onClickImage={isOpenModal} />
-      {loading && <Loader />}
+      {loading && <Loader loading={true}/>}
       {photos.length > 0 && !loading && (
         <LoadMoreBtn onClick={() => setPage(page + 1)}>Load more</LoadMoreBtn>
       )}

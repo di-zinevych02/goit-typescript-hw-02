@@ -1,10 +1,20 @@
 import toast from "react-hot-toast";
 import css from "./SearchBar.module.css";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, FormikHelpers  } from "formik";
 import { FaSearch } from "react-icons/fa";
+import { FC } from "react";
+interface SearchFormValues {
+  searchInput: string;
+}
+//функція приймає string
+interface SearchBarProps {
+  onSearch: (searchTerm: string) => void;
+}
 
-const SearchBar = ({ onSearch }) => {
-  const handleSubmit = (values, actions) => {
+const SearchBar: FC<SearchBarProps> = ({ onSearch }) => {
+  const handleSubmit = (
+    values: SearchFormValues,
+    actions: FormikHelpers<SearchFormValues>) => {
     //Користувач не зможе відправити рядок, який містить лише пробіли.
     const trimmedTerm = values.searchInput.trim();
 

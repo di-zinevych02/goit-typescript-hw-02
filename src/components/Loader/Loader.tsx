@@ -1,6 +1,9 @@
 import ClipLoader from "react-spinners/ClipLoader";
 import css from "./Loader.module.css";
-export default function Loader({ loading, color = "#00FF88", size = 50 }) {
+import { FC } from "react";
+interface LoaderProps { loading: boolean; color?: string; size?: number; }
+
+const Loader: FC<LoaderProps> = ({ loading, color = "#00FF88", size = 50 }) => {
   return (
     <div className={css.loader}>
       <ClipLoader
@@ -14,3 +17,4 @@ export default function Loader({ loading, color = "#00FF88", size = 50 }) {
     </div>
   );
 }
+export default Loader;
