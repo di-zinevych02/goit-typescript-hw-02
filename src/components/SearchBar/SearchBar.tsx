@@ -31,17 +31,19 @@ const SearchBar: FC<SearchBarProps> = ({ onSearch }) => {
     <header className={css.header}>
       <Formik initialValues={{ searchInput: "" }} onSubmit={handleSubmit}>
         <Form className={css.searchform}>
+          <div className={css.inputwrapper}>
           <Field
             type="text"
             autoComplete="off"
             autoFocus
-            placeholder="Search images and photos"
+            placeholder="Search images"
             name="searchInput"
             className={css.input}
           />
           <button type="submit" className={css.btnsearch}>
             <FaSearch />
-          </button>
+            </button>
+            </div>
         </Form>
       </Formik>
     </header>

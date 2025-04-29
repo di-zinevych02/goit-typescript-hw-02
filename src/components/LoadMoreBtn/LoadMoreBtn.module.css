@@ -8,6 +8,18 @@
   transition: all 0.3s ease;
   font-weight: bold;
   color: #66ffcc;
-  font-size: 20px;
+  font-size: 14px;
   cursor: pointer;
+}
+@media (min-width: 768px) {
+  .btnloadmore {
+
+      font-size: 16px;
+
+    }
+}
+@media (min-width: 1280px) {
+  .btnloadmore {
+    font-size: 20px;
+  }
 }

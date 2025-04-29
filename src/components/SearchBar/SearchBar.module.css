@@ -1,24 +1,37 @@
 .header {
-  width: 1128px;
-  background-color: #ccffcc;
-  padding: 20px;
-  margin: 0 auto;
+  position: relative;
+  top: 0;
+  margin: 0;
+  left: 0;
+  width: 100%;
+
   text-align: center;
-  border-radius: 20px;
-  box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+  background-color: transparent;
+  padding: 10px 12px;
+}
+
+.title {
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #00ff88;
+  text-shadow: 0 0 5px #00ff88;
 }
 
 .searchform {
-  position: relative;
-  width: 320px;
-  margin: 0 auto;
+
   display: flex;
+  justify-content: center;
   align-items: center;
 }
-
+.inputwrapper {
+  position: relative;
+  display: inline-block;
+}
 .input {
-  width: 100%;
-  padding: 12px 15px 12px 40px; /* Місце для кнопки зліва */
+
+  max-width: 120px;
+  padding: 12px 50px;
+    /* для кнопки справа */
   border: 2px solid #00ff88;
   border-radius: 30px;
   background-color: #000;
@@ -42,16 +55,60 @@
 .btnsearch {
   position: absolute;
   top: 50%;
+  left: 5px;
   transform: translateY(-50%);
   background: transparent;
   border: none;
   color: #00ff88;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 1rem;
   transition: all 0.3s ease;
 }
 
 .btnsearch:hover {
   transform: translateY(-50%) scale(1.2);
   color: #00ffcc;
+}
+
+/* ============ Tablet ============ */
+@media (min-width: 768px) {
+  .header {
+    padding: 20px;
+  }
+
+  .title {
+    font-size: 26px;
+  }
+
+  .input {
+    max-width: 200px;
+    font-size: 18px;
+padding: 14px 58px;
+  }
+
+  .btnsearch {
+    font-size: 1.2rem;
+
+  }
+}
+
+/* ============ Desktop ============ */
+@media (min-width: 1280px) {
+  .header {
+    padding: 24px;
+  }
+
+  .title {
+    font-size: 30px;
+  }
+
+  .input {
+    font-size: 20px;
+padding: 16px 60px;
+  }
+
+  .btnsearch {
+    font-size: 1.4rem;
+
+  }
 }
